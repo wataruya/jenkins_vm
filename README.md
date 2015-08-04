@@ -1,2 +1,2 @@
 # jenkins_vm
-jenkins_vm trial on 04/Aug/2015.
+jenkins_vm trial since 04/Aug/2015.
