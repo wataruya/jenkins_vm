@@ -1,0 +1,190 @@
+# SimVision Command Script (Mon Oct 07 09:50:08 AM MEST 2013)
+#
+# Version 13.10.s007
+#
+# You can restore this configuration with:
+#
+#     simvision -input simvision.svcf
+#
+
+
+#
+# Preferences
+#
+preferences set toolbar-Standard-SchematicWindow {
+  usual
+  position -pos 1
+}
+preferences set toolbar-Standard-WatchWindow {
+  usual
+  shown 0
+}
+preferences set toolbar-SimControl-SrcBrowser {
+  usual
+  show step_out
+  hide set_break
+  position -row 0 -pos 0
+}
+preferences set toolbar-CursorControl-SrcBrowser {
+  usual
+  hide usage
+  hide previous_edge
+  hide next_edge
+  shown 0
+  position -pos 1
+}
+preferences set script-input-warning 0
+preferences set txe-locate-add-fibers 1
+preferences set toolbar-UserTB0-WatchList {
+  usual
+  add action_send_from_design_browser_to_stripechart
+  add action_send_from_design_browser_to_databrowser
+  add action_send_from_design_browser_to_visualization
+  shown 1
+  position -row 0 -pos 4 -anchor e
+  name {Send To Specman}
+}
+preferences set txe-view-hold 0
+preferences set txe-navigate-search-locate 0
+preferences set toolbar-TimeSearch-SrcBrowser {
+  usual
+  shown 0
+  position -pos 3 -anchor e
+}
+preferences set plugin-enable-svdatabrowser-new 1
+preferences set cursorctl-dont-show-sync-warning 1
+preferences set toolbar-Windows-WatchWindow {
+  usual
+  shown 0
+}
+preferences set toolbar-SvDataBrowser-SrcBrowser {
+  usual
+  position -pos 3
+  name SvDataBrowser
+}
+preferences set user-toolbar-list {WaveWindow {} WatchList {} Console {}}
+preferences set toolbar-Gdb-SrcBrowser {
+  usual
+  position -row 0 -pos 4
+  name Gdb
+}
+preferences set txe-navigate-waveform-locate 1
+preferences set txe-view-hidden 0
+preferences set toolbar-Standard-SimCompare {
+  usual
+  position -anchor e
+}
+preferences set toolbar-Standard-Console {
+  usual
+  position -pos 2
+}
+preferences set toolbar-Standard-SrcBrowser {
+  usual
+  hide opensrc
+  hide opensim
+  hide copy
+  hide edit
+  position -pos 6
+}
+preferences set toolbar-SignalTrace-SrcBrowser {
+  usual
+  hide previous
+  hide next
+  hide history-prev
+  hide history-next
+  position -row 0 -pos 2 -anchor w
+}
+preferences set txe-search-show-linenumbers 1
+preferences set toolbar-OperatingMode-WaveWindow {
+  usual
+  position -pos 4
+  name OperatingMode
+}
+preferences set toolbar-Search-Console {
+  usual
+  position -pos 3
+}
+preferences set plugin-enable-svdatabrowser 1
+preferences set toolbar-Windows-SimCompare {
+  usual
+  position -pos 1
+}
+preferences set esw_debugger_geom_1 1000x600+10+73
+preferences set toolbar-Windows-SrcBrowser {
+  usual
+  hide tools
+  position -pos 7 -anchor w
+}
+preferences set toolbar-Standard-WaveWindow {
+  usual
+  position -pos 1
+}
+preferences set plugin-enable-groupscope 0
+preferences set toolbar-SrcCallstack-SrcBrowser {
+  usual
+  hide callstackmove
+  position -row 0 -pos 5 -anchor w
+}
+preferences set sb-callstack-in-window 0
+preferences set sb-display-values 1
+preferences set plugin-enable-interleaveandcompare 0
+preferences set toolbar-SimControl-WatchWindow {
+  usual
+  shown 0
+}
+preferences set txe-navigate-waveform-next-child 1
+preferences set toolbar-Uvm-Console {
+  usual
+  position -pos 1
+}
+preferences set txe-locate-scroll-x 1
+preferences set txe-locate-scroll-y 1
+preferences set toolbar-Trace-SchematicWindow {
+  usual
+  position -pos 2
+}
+preferences set txe-locate-pop-waveform 1
+preferences set whats-new-dont-show-at-startup 1
+preferences set toolbar-TimeSearch-WatchWindow {
+  usual
+  shown 0
+}
+preferences set toolbar-Uvm-SrcBrowser {
+  usual
+  position -row 1
+}
+
+#
+# Mnemonic Maps
+#
+mmap new -reuse -name {Boolean as Logic} -radix %b -contents {{%c=FALSE -edgepriority 1 -shape low}
+{%c=TRUE -edgepriority 1 -shape high}}
+mmap new -reuse -name {Example Map} -radix %x -contents {{%b=11???? -bgcolor orange -label REG:%x -linecolor yellow -shape bus}
+{%x=1F -bgcolor red -label ERROR -linecolor white -shape EVENT}
+{%x=2C -bgcolor red -label ERROR -linecolor white -shape EVENT}
+{%x=* -label %x -linecolor gray -shape bus}}
+
+#
+# Design Browser windows
+#
+if {[catch {window new WatchList -name "Design Browser 1" -geometry 750x500+261+33}] != ""} {
+    window geometry "Design Browser 1" 750x500+261+33
+}
+window target "Design Browser 1" on
+browser using {Design Browser 1}
+browser set -scope [subst  {[format {:}]} ]
+browser set \
+    -signalsort name
+browser yview see [subst  {[format {:}]} ]
+browser timecontrol set -lock 0
+
+#
+# Console windows
+#
+console set -windowname Console
+window geometry Console 730x250+261+564
+
+#
+# Layout selection
+#
+

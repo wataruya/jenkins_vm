@@ -1,0 +1,55 @@
+session dummy_session {
+    -- do not change this variable (it is setup in the start_vm.sh)
+    top_dir : $ENV(TOP)/regression_runs;
+    
+    master_submission_policy:execute_locally;
+    drm: <text>serial local</text>;
+    create_debug_logs: TRUE;
+    max_runs_in_parallel: 5;
+     
+    -- this command is used by EManager to dispatch commands to the grid
+   // default_dispatch_parameters: <text> -q high</text>;
+    
+    queuing_policy: round_robin;
+    
+    // Create a compiled snapshot of the DUT and verification environment. 
+    // Also, create the Unicov model using the "-write_model" option 
+    // - THIS ONLY NEEDS TO BE DONE ONCE!
+    pre_session_script: "make -f $ENV(TOP)/Makefile elab";
+
+    // Setting output_mode to terminal is useful for debugging
+    output_mode: terminal;
+    
+    post_session_script : "vm_analyze.pl";
+auto_regr_report: ON;
+//auto_report_perspective: "top";
+--auto_report_vplan : "./myproj.vplan";m
+
+//auto_email: ON;
+//auto_email_distribution : "pouyet@cadence.com";
+};
+
+//
+// Define default or common simulation attributes for test groups
+//
+group dummy_tests {
+
+    // run script to launch simulation
+    run_script: "make -f $ENV(TOP)/Makefile run";
+    //runs_dispatch_parameters: <text> -q high</text>;
+    
+    // scan script to scan logs for simulation errors and information
+    scan_script: "vm_scan.pl ius.flt";
+
+    --pre_commands: "config gen -default_generator=IntelliGen; set checks ERROR_CONTINUE";
+    timeout : 43200; -- in seconds which is 12 hours
+     
+    test xor_verify_1 {
+      seed : random;
+    }; 
+
+    test xor_verify_2 {
+      seed : random;
+    }; 
+      
+};
