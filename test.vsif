@@ -18,7 +18,7 @@ session dummy_session {
     pre_session_script: "make -f $ENV(TOP)/Makefile elab";
 
     // Setting output_mode to terminal is useful for debugging
-    output_mode: terminal;
+    output_mode: log_only; // terminal;
     
     post_session_script : "vm_analyze.pl";
 auto_regr_report: ON;
