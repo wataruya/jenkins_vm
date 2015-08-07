@@ -10,3 +10,4 @@ Build trigger(2) - Aug/07/2015
 Build trigger(3) - Aug/07/2015
 Build trigger(4) - Fri Aug  7 19:05:19 JST 2015
 Build trigger(5) - Fri Aug  7 19:23:52 JST 2015
+Build trigger(6) - Fri Aug  7 19:30:02 JST 2015
