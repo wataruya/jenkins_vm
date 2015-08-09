@@ -1,7 +1,7 @@
 session dummy_session {
     -- do not change this variable (it is setup in the start_vm.sh)
     top_dir : $ENV(TOP)/regression_runs;
-    
+    session_description: <text>This is an example session for Git-Jenkins-vManager</text>;    
     master_submission_policy:execute_locally;
     drm: <text>serial local</text>;
     create_debug_logs: TRUE;
